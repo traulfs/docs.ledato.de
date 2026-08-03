@@ -1,0 +1,83 @@
+site_name: Ledato Dokumentation
+site_url: https://docs.ledato.de
+site_description: Dokumentation der Ledato GmbH zu LED-Panels, App-Steuerung und Montagelösungen
+repo_url: https://github.com/traulfs/docs.ledato.de
+repo_name: traulfs/docs.ledato.de
+
+theme:
+  name: material
+  language: de
+  logo: assets/ledato-logo.png
+  favicon: assets/ledato-favicon.ico
+  font:
+    text: Inter
+    code: Roboto Mono
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Dunkles Design
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Helles Design
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: de
+          name: Deutsch
+          build: true
+          default: true
+        - locale: en
+          name: English
+          build: true
+          nav_translations:
+            Anwendungen: Applications
+            App Steuerung: App Control
+            Montage: Mounting
+  - search:
+      lang:
+        - de
+        - en
+  - swagger-ui-tag:
+      tryItOutEnabled: true
+      docExpansion: list
+
+hooks:
+  - hooks/roamlinks_i18n.py
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
